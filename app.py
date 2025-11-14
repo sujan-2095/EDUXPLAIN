@@ -10,6 +10,7 @@ from flask import Flask, jsonify, redirect, render_template, request, session, u
 
 from src.alerts import build_alert_payload, should_alert
 from src.auth import authenticate_user, get_user_by_id, register_user
+from src.database import init_app
 from src.gemini_api import call_gemini
 from src.storage import save_prediction
 from src.utils import (
@@ -24,6 +25,9 @@ app = Flask(
 )
 app.secret_key = os.getenv("SECRET_KEY", secrets.token_hex(32))
 logging.basicConfig(level=logging.INFO)
+
+# Initialize database (PostgreSQL on Render, SQLite locally)
+init_app(app)
 
 
 def login_required(f):
