@@ -28,6 +28,11 @@ def init_db() -> None:
             )
             """
         )
+        # Check if user_id column exists, add it if it doesn't
+        cursor = conn.execute("PRAGMA table_info(predictions)")
+        columns = [row[1] for row in cursor.fetchall()]
+        if "user_id" not in columns:
+            conn.execute("ALTER TABLE predictions ADD COLUMN user_id INTEGER")
         conn.commit()
 
 

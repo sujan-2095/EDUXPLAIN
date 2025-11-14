@@ -6,13 +6,14 @@
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #4facfe);
+  background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #533483);
   background-size: 400% 400%;
   animation: gradientShift 15s ease infinite;
   min-height: 100vh;
   padding: 20px;
   position: relative;
   overflow-x: hidden;
+  color: #e0e0e0;
 }
 
 @keyframes gradientShift {
@@ -34,9 +35,9 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.3) 0%, transparent 50%),
-              radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.3) 0%, transparent 50%),
-              radial-gradient(circle at 40% 20%, rgba(240, 147, 251, 0.2) 0%, transparent 50%);
+  background: radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
+              radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.15) 0%, transparent 50%),
+              radial-gradient(circle at 40% 20%, rgba(83, 52, 131, 0.1) 0%, transparent 50%);
   animation: float 20s ease-in-out infinite;
   pointer-events: none;
   z-index: 0;
@@ -62,13 +63,14 @@ body::before {
 }
 
 .user-bar {
-  background: rgba(255, 255, 255, 0.95);
-  color: #333;
+  background: rgba(30, 30, 46, 0.95);
+  color: #e0e0e0;
   padding: 15px 25px;
   border-radius: 15px;
   margin-bottom: 25px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   animation: slideUp 0.5s ease-out;
+  border: 1px solid rgba(102, 126, 234, 0.2);
 }
 
 @keyframes slideUp {
@@ -107,6 +109,7 @@ body::before {
   justify-content: center;
   font-weight: bold;
   font-size: 18px;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
 }
 
 .user-bar .btn-logout {
@@ -136,14 +139,15 @@ body::before {
 }
 
 .header-section h1 {
-  color: white;
+  color: #ffffff;
   font-size: 28px;
   font-weight: 700;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .btn-sample {
-  background: rgba(255, 255, 255, 0.2);
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: rgba(102, 126, 234, 0.3);
+  border: 2px solid rgba(102, 126, 234, 0.5);
   color: white;
   padding: 10px 20px;
   border-radius: 10px;
@@ -153,17 +157,20 @@ body::before {
 }
 
 .btn-sample:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(102, 126, 234, 0.5);
+  border-color: rgba(102, 126, 234, 0.7);
   transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
 }
 
 .card {
-  background: white;
+  background: rgba(30, 30, 46, 0.95);
   border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   margin-bottom: 25px;
   overflow: hidden;
   animation: slideUp 0.6s ease-out;
+  border: 1px solid rgba(102, 126, 234, 0.2);
 }
 
 .card-header {
@@ -180,8 +187,9 @@ body::before {
 
 .card-footer {
   padding: 18px 25px;
-  background: #f8f9fa;
+  background: rgba(20, 20, 35, 0.8);
   text-align: right;
+  border-top: 1px solid rgba(102, 126, 234, 0.1);
 }
 
 .form-row {
@@ -197,7 +205,7 @@ body::before {
 
 .form-group label {
   display: block;
-  color: #333;
+  color: #d0d0d0;
   font-weight: 600;
   margin-bottom: 8px;
   font-size: 14px;
@@ -206,16 +214,23 @@ body::before {
 .form-group input {
   width: 100%;
   padding: 12px 16px;
-  border: 2px solid #e0e0e0;
+  background: rgba(20, 20, 35, 0.8);
+  border: 2px solid rgba(102, 126, 234, 0.3);
   border-radius: 10px;
   font-size: 15px;
   transition: all 0.3s;
   outline: none;
+  color: #e0e0e0;
 }
 
 .form-group input:focus {
   border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+  background: rgba(25, 25, 40, 0.9);
+}
+
+.form-group input::placeholder {
+  color: #888;
 }
 
 .btn-primary {
@@ -249,11 +264,12 @@ body::before {
 }
 
 .result-card {
-  background: white;
+  background: rgba(30, 30, 46, 0.95);
   border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   overflow: hidden;
   animation: slideUp 0.6s ease-out;
+  border: 1px solid rgba(102, 126, 234, 0.2);
 }
 
 .result-card .card-header {
@@ -269,10 +285,11 @@ body::before {
 
 .progress {
   height: 28px;
-  background: #e0e0e0;
+  background: rgba(20, 20, 35, 0.8);
   border-radius: 10px;
   overflow: hidden;
   margin: 10px 0;
+  border: 1px solid rgba(102, 126, 234, 0.2);
 }
 
 .progress-bar {
@@ -298,11 +315,11 @@ body::before {
 }
 
 #alert-card .alert {
-  background: #fee;
-  color: #c33;
+  background: rgba(220, 53, 69, 0.2);
+  color: #ff6b7a;
   padding: 18px 20px;
   border-radius: 10px;
-  border: 2px solid #c33;
+  border: 2px solid rgba(220, 53, 69, 0.5);
   margin: 0;
   text-align: center;
   font-weight: 600;
@@ -318,7 +335,7 @@ ol, ul {
 
 ol li, ul li {
   margin-bottom: 8px;
-  color: #555;
+  color: #d0d0d0;
 }
 
 #results {
@@ -331,7 +348,7 @@ ol li, ul li {
 
 /* Auth Pages Styles */
 body.auth-page {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
   background-size: 100% 100%;
   display: flex;
   align-items: center;
@@ -346,13 +363,14 @@ body.auth-page::before {
 }
 
 .auth-container {
-  background: white;
+  background: rgba(30, 30, 46, 0.95);
   border-radius: 20px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
   padding: 40px;
   width: 100%;
   max-width: 420px;
   animation: slideUp 0.5s ease-out;
+  border: 1px solid rgba(102, 126, 234, 0.3);
 }
 
 .logo {
@@ -365,10 +383,11 @@ body.auth-page::before {
   font-size: 32px;
   font-weight: 700;
   margin-bottom: 5px;
+  text-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
 }
 
 .logo p {
-  color: #666;
+  color: #b0b0b0;
   font-size: 14px;
 }
 
@@ -378,7 +397,7 @@ body.auth-page::before {
 
 .auth-container .form-group label {
   display: block;
-  color: #333;
+  color: #d0d0d0;
   font-weight: 600;
   margin-bottom: 8px;
   font-size: 14px;
@@ -387,16 +406,23 @@ body.auth-page::before {
 .auth-container .form-group input {
   width: 100%;
   padding: 12px 16px;
-  border: 2px solid #e0e0e0;
+  background: rgba(20, 20, 35, 0.8);
+  border: 2px solid rgba(102, 126, 234, 0.3);
   border-radius: 10px;
   font-size: 15px;
   transition: all 0.3s;
   outline: none;
+  color: #e0e0e0;
 }
 
 .auth-container .form-group input:focus {
   border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+  background: rgba(25, 25, 40, 0.9);
+}
+
+.auth-container .form-group input::placeholder {
+  color: #888;
 }
 
 .btn {
@@ -423,19 +449,19 @@ body.auth-page::before {
 }
 
 .error {
-  background: #fee;
-  color: #c33;
+  background: rgba(220, 53, 69, 0.2);
+  color: #ff6b7a;
   padding: 12px;
   border-radius: 8px;
   margin-bottom: 20px;
   font-size: 14px;
-  border-left: 4px solid #c33;
+  border-left: 4px solid rgba(220, 53, 69, 0.6);
 }
 
 .link-text {
   text-align: center;
   margin-top: 20px;
-  color: #666;
+  color: #b0b0b0;
   font-size: 14px;
 }
 
@@ -447,7 +473,7 @@ body.auth-page::before {
 }
 
 .link-text a:hover {
-  color: #764ba2;
+  color: #8b7fc7;
   text-decoration: underline;
 }
 
