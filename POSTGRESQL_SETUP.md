@@ -5,9 +5,12 @@ This application has been configured to use PostgreSQL on Render's free tier, wi
 ## ✅ What's Been Done
 
 1. ✅ Added `flask-sqlalchemy` and `psycopg2-binary` to `requirements.txt`
-2. ✅ Created database models using SQLAlchemy
+2. ✅ Created database models using SQLAlchemy (User, Prediction)
 3. ✅ Converted all database operations from SQLite to SQLAlchemy
 4. ✅ Configured automatic database URL detection (PostgreSQL on Render, SQLite locally)
+5. ✅ Models are imported BEFORE `db.create_all()` in `app.py`
+6. ✅ `db.create_all()` runs in app context on startup
+7. ✅ Added logging to verify database connection and table creation
 
 ## 🚀 Setup Steps for Render
 
@@ -61,9 +64,35 @@ Tables are automatically created on first run using `db.create_all()`.
 ## 🔍 Verification
 
 After deployment, check your Render logs to ensure:
-- Database connection is successful
-- Tables are created
+- Database connection is successful (look for "Connecting to PostgreSQL database...")
+- Tables are created (look for "Database tables created/verified successfully")
 - No errors related to database operations
+
+### Verify Tables in PostgreSQL
+
+You can use Beekeeper Studio or any PostgreSQL client to verify tables:
+
+```sql
+SELECT table_name 
+FROM information_schema.tables 
+WHERE table_schema='public';
+```
+
+You should see:
+- `users`
+- `predictions`
+
+### Local Verification
+
+Run the verification script locally:
+```bash
+python verify_db_setup.py
+```
+
+This will show:
+- Database URI being used
+- All tables and their columns
+- Registered SQLAlchemy models
 
 ## 💡 Benefits
 

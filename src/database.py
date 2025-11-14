@@ -63,8 +63,17 @@ def init_app(app: Flask) -> None:
     
     # Create tables and handle migrations
     with app.app_context():
+        # Log database connection info
+        db_uri = app.config["SQLALCHEMY_DATABASE_URI"]
+        if database_url:
+            logger.info(f"Connecting to PostgreSQL database: {db_uri[:50]}...")
+        else:
+            logger.info(f"Using SQLite database: {db_uri}")
+        
         # Create tables if they don't exist
+        # Models must be imported before this point (done in app.py)
         db.create_all()
+        logger.info("Database tables created/verified successfully")
         
         # Handle migration for existing SQLite databases
         if not database_url or database_url.startswith("sqlite"):
