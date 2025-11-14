@@ -4,7 +4,7 @@ This application has been configured to use PostgreSQL on Render's free tier, wi
 
 ## ✅ What's Been Done
 
-1. ✅ Added `flask-sqlalchemy` and `psycopg2-binary` to `requirements.txt`
+1. ✅ Added `flask-sqlalchemy` and `psycopg[binary]` (v3) to `requirements.txt` (supports Python 3.12+)
 2. ✅ Created database models using SQLAlchemy (User, Prediction)
 3. ✅ Converted all database operations from SQLite to SQLAlchemy
 4. ✅ Configured automatic database URL detection (PostgreSQL on Render, SQLite locally)
@@ -101,4 +101,17 @@ This will show:
 - ✅ **Scalable** - Can upgrade to paid tier if needed
 - ✅ **Compatible** - Works with all Flask features
 - ✅ **No disk needed** - Database is managed by Render
+- ✅ **Python 3.12+ Compatible** - Uses `psycopg` (v3) which supports modern Python versions
+
+## ⚠️ Troubleshooting
+
+### Python Version Compatibility
+
+If you encounter import errors with `psycopg2-binary` on Python 3.13+, the app now uses `psycopg[binary]` (v3) which supports Python 3.12 and 3.13.
+
+### Database Connection Issues
+
+- Ensure `DATABASE_URL` environment variable is set in Render
+- Check Render logs for connection errors
+- Verify the database URL format: `postgresql://user:password@host:port/dbname`
 
