@@ -1,6 +1,7 @@
 ﻿from __future__ import annotations
 
 import logging
+import os
 from typing import Any, Dict
 
 from flask import Flask, jsonify, render_template, request
@@ -67,4 +68,5 @@ def predict() -> Any:
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.getenv("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=False)
