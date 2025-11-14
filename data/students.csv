@@ -1,0 +1,4 @@
+﻿student_id,attendance_pct,avg_quiz_score,avg_assignment_score,class_participation_score,prior_topic_score,hours_studied_per_week
+S001,85,78,82,7,70,5
+S002,60,45,50,3,40,1
+S003,72,68,65,6,62,4
