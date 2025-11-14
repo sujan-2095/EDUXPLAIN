@@ -1,13 +1,37 @@
 """Database configuration and models using SQLAlchemy."""
 from __future__ import annotations
 
+import logging
 import os
 from datetime import datetime
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import inspect, text
 
 db = SQLAlchemy()
+
+logger = logging.getLogger(__name__)
+
+
+def _migrate_sqlite_schema() -> None:
+    """Migrate existing SQLite schema to match current models."""
+    try:
+        # Check if predictions table exists and has user_id column
+        inspector = inspect(db.engine)
+        tables = inspector.get_table_names()
+        
+        if "predictions" in tables:
+            columns = [col["name"] for col in inspector.get_columns("predictions")]
+            if "user_id" not in columns:
+                # Add user_id column to existing predictions table
+                logger.info("Migrating predictions table: adding user_id column")
+                with db.engine.begin() as conn:
+                    conn.execute(text("ALTER TABLE predictions ADD COLUMN user_id INTEGER"))
+                logger.info("Migration completed successfully")
+    except Exception as e:
+        # If migration fails, log but don't crash
+        logger.warning(f"Schema migration warning: {e}")
 
 
 def init_app(app: Flask) -> None:
@@ -37,9 +61,14 @@ def init_app(app: Flask) -> None:
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     db.init_app(app)
     
-    # Create tables
+    # Create tables and handle migrations
     with app.app_context():
+        # Create tables if they don't exist
         db.create_all()
+        
+        # Handle migration for existing SQLite databases
+        if not database_url or database_url.startswith("sqlite"):
+            _migrate_sqlite_schema()
 
 
 class User(db.Model):
