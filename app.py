@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import logging
 import os
@@ -8,11 +8,11 @@ from typing import Any, Dict
 
 from flask import Flask, jsonify, redirect, render_template, request, session, url_for
 
-from alerts import build_alert_payload, should_alert
-from auth import authenticate_user, get_user_by_id, register_user
-from gemini_api import call_gemini
-from storage import save_prediction
-from utils import (
+from src.alerts import build_alert_payload, should_alert
+from src.auth import authenticate_user, get_user_by_id, register_user
+from src.gemini_api import call_gemini
+from src.storage import save_prediction
+from src.utils import (
     StudentFeatures,
     build_prompt,
     extract_first_json_block,
@@ -20,7 +20,7 @@ from utils import (
 )
 
 app = Flask(
-    __name__, template_folder="../templates", static_folder="../static"
+    __name__, template_folder="templates", static_folder="static"
 )
 app.secret_key = os.getenv("SECRET_KEY", secrets.token_hex(32))
 logging.basicConfig(level=logging.INFO)
@@ -138,3 +138,4 @@ def predict() -> Any:
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 5000))
     app.run(host="0.0.0.0", port=port, debug=False)
+
